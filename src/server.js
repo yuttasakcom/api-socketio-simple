@@ -23,3 +23,5 @@ server.listen(app.get('port'), err => {
 
   console.log(`Server running at localhost:${app.get('port')}`)
 })
+
+module.exports = server

@@ -5,6 +5,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const ratelimit = require('./middleware/ratelimit')
 const mongoose = require('mongoose')
+const passport = require('passport')
 
 const dotenv = require('dotenv')
 dotenv.config()
@@ -27,6 +28,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 const mongodb = process.env.MONGO_HOST || 'mongodb://localhost:27017/apis'
 mongoose.Promise = global.Promise
 mongoose.connect(mongodb)
+
+require('./services/passport')
+app.use(passport.initialize())
+app.use(passport.session())
 
 const routes = require('./routes')
 app.use(routes)

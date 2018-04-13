@@ -9,6 +9,10 @@ class UserController extends Controller {
         res.json(UserResponse.all(users))
       })
   }
+
+  static create (req, res) {
+    res.json(UserResponse.one(req.user))
+  }
 }
 
 module.exports = UserController
